@@ -1,6 +1,4 @@
 .env
-# firebase
-C:\Users\kaman\Desktop\Rentoo\communication\rentoo-rentals-management-firebase-adminsdk-l8c06-6a5314d56c.json
 *.sqlite3
 *.sqlite
 __pycache__/
@@ -9,3 +7,7 @@ __pycache__/
 *.pyd
 
 venv/
+media/
+
+# firbase .json config file
+*.json
