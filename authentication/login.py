@@ -13,7 +13,7 @@ class LoginView(APIView):
     authentication_classes = [TokenAuthentication]
 
     def post(self, request):
-        print(request.data)
+
         try:
             # Your authentication logic here
             user = authenticate(
