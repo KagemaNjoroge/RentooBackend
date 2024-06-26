@@ -10,4 +10,4 @@ venv/
 media/
 
 # firbase .json config file
-*.json
+google-services.json
