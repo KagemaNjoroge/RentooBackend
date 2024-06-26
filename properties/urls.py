@@ -1,16 +1,11 @@
 from rest_framework.routers import DefaultRouter
 
-from .views import (
-    HouseViewSet,
-    PropertyViewSet,
-    PropertyPhotoViewSet,
-    HousePhotoViewSet,
-)
+from .views import HouseViewSet, PropertyViewSet, EntityPhotoViewSet
 
 router = DefaultRouter()
 router.register("houses", HouseViewSet, basename="houses")
 router.register("", PropertyViewSet, basename="properties")
-router.register("property_photos", PropertyPhotoViewSet, basename="property_photos")
-router.register("house_photos", HousePhotoViewSet, basename="house_photos")
+router.register("photos", EntityPhotoViewSet, basename="photos")
+
 
 urlpatterns = router.urls
