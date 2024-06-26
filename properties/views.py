@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from .serializers import PropertySerializer, HouseSerializer, PropertyPhotoSerializer, HousePhotoSerializer
-from .models import Property, House, PropertyPhoto, HousePhoto
+from .serializers import (
+    EntityPhotoSerializer,
+    PropertySerializer,
+    HouseSerializer,
+)
+from .models import Property, House, EntityPhoto
 from rest_framework import viewsets
 
 
@@ -14,11 +18,6 @@ class HouseViewSet(viewsets.ModelViewSet):
     serializer_class = HouseSerializer
 
 
-class PropertyPhotoViewSet(viewsets.ModelViewSet):
-    queryset = PropertyPhoto.objects.all()
-    serializer_class = PropertyPhotoSerializer
-
-
-class HousePhotoViewSet(viewsets.ModelViewSet):
-    queryset = HousePhoto.objects.all()
-    serializer_class = HousePhotoSerializer
+class EntityPhotoViewSet(viewsets.ModelViewSet):
+    queryset = EntityPhoto.objects.all()
+    serializer_class = EntityPhotoSerializer
