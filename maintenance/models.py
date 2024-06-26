@@ -1,12 +1,11 @@
 from django.db import models
 
-from properties.models import Property
+from properties.models import House, Property
 
 
 class MaintenanceRequest(models.Model):
-    property = models.ForeignKey(
-        Property, on_delete=models.CASCADE, related_name="maintenance_requests"
-    )
+    house = models.ForeignKey(to=House, on_delete=models.CASCADE, null=True, blank=True)
+
     description = models.TextField()
     requested_by = models.ForeignKey(
         "authentication.CustomUser", on_delete=models.CASCADE
