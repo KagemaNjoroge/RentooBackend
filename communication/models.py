@@ -1,9 +1,7 @@
 import datetime
-
 from django.db import models
-
 from authentication.models import CustomUser
-from .firebase_init import db  # Import Firebase Firestore client
+from .firebase_init import db
 
 
 class Message(models.Model):
@@ -13,7 +11,7 @@ class Message(models.Model):
     recipient = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="received_messages"
     )
-    subject = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255, null=True, blank=True)
     body = models.TextField()
     sent_at = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)
