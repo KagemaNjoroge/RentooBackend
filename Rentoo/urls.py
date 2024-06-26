@@ -16,7 +16,7 @@ schema_view = get_schema_view(
         contact=openapi.Contact(email="nyamburanjorogejames@students.uonbi.ac.ke"),
         license=openapi.License(name="BSD License"),
     ),
-    public=True,
+    public=False,
 )
 
 
