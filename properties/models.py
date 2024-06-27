@@ -3,6 +3,19 @@ from django.db import models
 from authentication.models import CustomUser
 
 
+class Amenity(models.Model):
+    title = models.CharField(max_length=100, default="")
+    description = models.CharField(max_length=300, default="")
+    number = models.IntegerField(default=1)
+
+    def __str__(self) -> str:
+        return self.title
+
+    class Meta:
+        verbose_name = "Amenity"
+        verbose_name_plural = "Amenities"
+
+
 class Property(models.Model):
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
@@ -39,6 +52,7 @@ class House(models.Model):
     property = models.ForeignKey(
         Property, on_delete=models.CASCADE, related_name="houses"
     )
+    amenities = models.ManyToManyField("Amenity", related_name="amenities", blank=True)
     photos = models.ManyToManyField("EntityPhoto", related_name="houses", blank=True)
     house_number = models.CharField(max_length=50)
     number_of_rooms = models.IntegerField()
