@@ -1,5 +1,4 @@
 from django.db import models
-
 from authentication.models import CustomUser
 from properties.models import House
 
@@ -25,7 +24,7 @@ class Lease(models.Model):
     house = models.ForeignKey(House, on_delete=models.CASCADE, related_name="leases")
     start_date = models.DateField()
     end_date = models.DateField()
-    deposit_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    deposit_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
