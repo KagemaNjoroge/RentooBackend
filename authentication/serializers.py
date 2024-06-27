@@ -17,3 +17,8 @@ class UserSerializer(serializers.ModelSerializer):
             "groups": {"write_only": True},
             "user_permissions": {"write_only": True},
         }
+
+
+class LoginSerializer(serializers.Serializer):
+    password = serializers.CharField()
+    username = serializers.CharField()
