@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class Agent(models.Model):
     user = models.OneToOneField(
         "authentication.CustomUser", on_delete=models.CASCADE, related_name="agent"
