@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Property, House, EntityPhoto
+from .models import Property, House, EntityPhoto, Unit
 
 admin.site.site_header = "Rentoo Property Management System"
 admin.site.site_title = "Rentoo PMS"
@@ -34,3 +34,8 @@ class PropertyPhotoAdmin(admin.ModelAdmin):
     list_display = ("image", "caption", "uploaded_at")
     search_fields = ("caption",)
     list_filter = ("uploaded_at",)
+
+
+@admin.register(Unit)
+class UnitAdmin(admin.ModelAdmin):
+    list_display = ("unit_name", "property")
