@@ -32,13 +32,6 @@ class Property(models.Model):
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    landlord = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name="landlord_properties",
-        null=True,
-        blank=True,
-    )
 
     def __str__(self):
         return self.name
@@ -49,8 +42,16 @@ class Property(models.Model):
 
 
 class House(models.Model):
+    purposes = (
+        ("RESIDENTIAL", "Residential"),
+        ("COMMERCIAL", "Commercial"),
+        ("OTHER", "Other"),
+    )
     property = models.ForeignKey(
         Property, on_delete=models.CASCADE, related_name="houses"
+    )
+    purpose = models.CharField(
+        choices=purposes, default="RESIDENTIAL", blank=True, null=True, max_length=30
     )
     amenities = models.ManyToManyField("Amenity", related_name="amenities", blank=True)
     photos = models.ManyToManyField("EntityPhoto", related_name="houses", blank=True)
@@ -61,6 +62,9 @@ class House(models.Model):
     rent = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    description = models.TextField(
+        blank=True, null=True, default="No additional description"
+    )
 
     class Meta:
         unique_together = ("property", "house_number")
@@ -72,7 +76,6 @@ class House(models.Model):
 
 
 class EntityPhoto(models.Model):
-
     image = models.ImageField(upload_to="house_photos/")
     caption = models.CharField(max_length=255, blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
@@ -83,3 +86,17 @@ class EntityPhoto(models.Model):
     class Meta:
         verbose_name = "House Photo"
         verbose_name_plural = "House Photos"
+
+
+class Unit(models.Model):
+    property = models.ForeignKey(to=Property, on_delete=models.CASCADE)
+    unit_name = models.CharField(max_length=50)
+    floor = models.CharField(max_length=30)
+    houses = models.ManyToManyField(to=House)
+
+    def __str__(self) -> str:
+        return self.unit_name
+
+    class Meta:
+        verbose_name = "Property Unit"
+        verbose_name_plural = "Property Units"
