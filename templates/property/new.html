@@ -1,0 +1,59 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}New Property{% endblock title %}
+{% block heading %}New Property{% endblock heading %}
+{% block content %}
+
+<div class="ml-2 mb-3">
+    <a href="{% url 'client:property' %}">
+        <button type="button" class="btn btn-primary font-weight-bold">
+            <i class="ti ti-arrow-left"></i>
+            Go Back
+        </button>
+    </a>
+</div>
+<div class="card ml-2">
+    <div class="card-body">
+        <div class="alert alert-success" role="alert">
+            <i class="ti ti-info-circle mr-2"></i>
+            Fill in the details of the property below.
+        </div>
+
+        <form action="/api/properties/" method="post" id="property_form">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group">
+
+                    <label for="inputDescription">Property Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Madaraka Apartments" required
+                        id="inputDescription" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="address">Where is the property located?</label>
+                    <input type="text" name="address" class="form-control" placeholder="Kiambu Road, Exit 3" required
+                        id="address" />
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="description">Some few notes about the property</label>
+                    <textarea name="description" id="description" class="form-control"
+                        placeholder="3B Apartments, self contained, 24hrs water supply"></textarea>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-success font-weight-bold mt-3" id="submit">
+                Create property
+            </button>
+        </form>
+
+    </div>
+</div>
+
+{%endblock content%}
