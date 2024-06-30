@@ -18,6 +18,9 @@
     <link rel="shortcut icon" type="image/png" href="{%static 'img/logos/rocket.png'%}" />
     <!--simple bar-->
     <link rel="stylesheet" href="{%static 'libs/simplebar/dist/simplebar.min.css'%}">
+    <!--Datatables-->
+    <link rel="stylesheet" href="{%static 'libs/datatables/dataTables.bootstrap4.min.css'%}">
+    <script src="{%static 'libs/jquery/dist/jquery.min.js'%}"></script>
 </head>
 
 <body>
@@ -31,7 +34,8 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <a href="" class="text-nowrap logo-img">
-                        <img src="{%static 'img/logos/ultimate_pos.svg'%}" width="180" alt="" />
+                        <img src="{%static 'img/rentoo_logo_black.png'%}" width="150" height="150" class="img img-fluid"
+                            alt="RentooPMS logo" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>
@@ -103,7 +107,7 @@
                         <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
                             <use href="#circle-half"></use>
                         </svg>
-                        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+                        <span class="visually-hidden" id="bd-theme-text">Switch theme</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
                         <li>
@@ -160,8 +164,6 @@
 
     </footer>
     <!--Global Javascript-->
-
-
     <!--JQuery-->
     <script src="{%static 'libs/jquery/dist/jquery.min.js'%}"></script>
 
@@ -173,9 +175,11 @@
     <script src="{%static 'js/color-modes.js'%}"></script>
     <!--Bootstrap-->
     <script src="{%static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js'%}"></script>
-
     <!--simplebar-->
     <script src="{%static 'libs/simplebar/dist/simplebar.min.js'%}"></script>
+    <!--DataTables-->
+    <script src="{%static 'libs/datatables/jquery.dataTables.min.js'%}"></script>
+    <script src="{%static 'libs/datatables/dataTables.bootstrap4.min.js'%}"></script>
 
 
 </body>
