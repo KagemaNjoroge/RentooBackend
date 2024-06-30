@@ -6,6 +6,8 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.conf.urls.static import static
+from Rentoo import settings
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -21,20 +23,22 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
+    # admin
     path("admin/", admin.site.urls),
-    path("auth/", include("authentication.urls")),
+    # authentication
+    path("api/auth/", include("authentication.urls")),
     # properties
-    path("properties/", include("properties.urls")),
+    path("api/properties/", include("properties.urls")),
     # tenants
-    path("tenants/", include("tenants.urls")),
+    path("api/tenants/", include("tenants.urls")),
     # landlords
-    path("landlords/", include("landlords.urls")),
+    path("api/landlords/", include("landlords.urls")),
     # agents
-    path("agents/", include("agents.urls")),
+    path("api/agents/", include("agents.urls")),
     # communication
-    path("communication/", include("communication.urls")),
+    path("api/communication/", include("communication.urls")),
     # maintenance
-    path("maintenance/", include("maintenance.urls")),
+    path("api/maintenance/", include("maintenance.urls")),
     # swagger docs
     path(
         "swagger/",
@@ -44,4 +48,7 @@ urlpatterns = [
     # jwt token
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    # client
+    path("", include("client.urls")),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
