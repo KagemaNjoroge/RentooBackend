@@ -2,11 +2,16 @@ from .serializers import (
     EntityPhotoSerializer,
     PropertySerializer,
     HouseSerializer,
+    UnitSerializer,
 )
-from .models import Property, House, EntityPhoto
+from .models import Property, House, EntityPhoto, Unit
 from rest_framework import viewsets
 from drf_yasg.utils import swagger_auto_schema
-import time
+
+
+class UnitViewSet(viewsets.ModelViewSet):
+    queryset = Unit.objects.all()
+    serializer_class = UnitSerializer
 
 
 class PropertyViewSet(viewsets.ModelViewSet):
