@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}{{house.id}}{% endblock title %}
+{% block heading %}{{house.id}}{% endblock heading %}
+{% block content %}
+
+<div class="ml-2 mb-3">
+    <a href="{% url 'client:houses' %}">
+        <button type="button" class="btn btn-primary font-weight-bold">
+            <i class="ti ti-arrow-left"></i>
+            Go Back
+        </button>
+    </a>
+</div>
+{%endblock content%}

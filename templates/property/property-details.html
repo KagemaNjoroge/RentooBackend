@@ -1,0 +1,84 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}{{property.name}}{% endblock title %}
+{% block heading %}{{property.name}}{% endblock heading %}
+{% block content %}
+<div class="ml-2 mb-3">
+    <a href="{% url 'client:property' %}">
+        <button type="button" class="btn btn-primary font-weight-bold">
+            <i class="ti ti-arrow-left"></i>
+            Go Back
+        </button>
+    </a>
+    <a href="{%url 'client:new_property'%}">
+        <button type="button" class="btn btn-success font-weight-bold">
+            <i class="ti ti-pencil"></i>
+            Edit
+        </button>
+    </a>
+</div>
+
+
+<div class="card ml-2">
+    <div class="card-header text-uppercase">
+        {{property.name}}
+    </div>
+    <div class="card-body row">
+
+        <div class="col-md-8">
+            <div class="row">
+                {%if property.photos.all%}
+                {%for img in property.photos.all%}
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <img src="{{img.image.url}}" alt="{{img.caption}}" class="img img-fluid">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {%endfor%}
+                {%else%}
+                <div class="alert alert-info" role="alert">
+                    <i class="ti ti-info-circle mr-2"></i>
+                    No photos for this property
+                </div>
+                {%endif%}
+
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            <p>
+                <strong>Located in:</strong>
+
+            </p>
+            {{property.address}}
+
+            <p>
+                <strong>Additional Info:</strong>
+            </p>
+
+            {%if property.description %}
+            {{property.description}}
+            {%else%}
+            <div class="alert alert-info" role="alert">
+                <i class="ti ti-info-circle mr-2"></i>
+                No additional info provided
+            </div>
+            {%endif%}
+
+
+        </div>
+
+
+    </div>
+</div>
+{%endblock content%}
