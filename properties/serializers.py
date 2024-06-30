@@ -1,5 +1,17 @@
 from rest_framework import serializers
-from .models import Property, House, EntityPhoto
+from .models import Property, House, EntityPhoto, Unit
+
+
+class UnitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Unit
+        fields = "__all__"
+
+
+class EntityPhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EntityPhoto
+        fields = "__all__"
 
 
 class PropertySerializer(serializers.ModelSerializer):
@@ -11,10 +23,4 @@ class PropertySerializer(serializers.ModelSerializer):
 class HouseSerializer(serializers.ModelSerializer):
     class Meta:
         model = House
-        fields = "__all__"
-
-
-class EntityPhotoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = EntityPhoto
         fields = "__all__"
