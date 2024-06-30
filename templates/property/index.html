@@ -1,7 +1,77 @@
 {% extends "main/base.html" %}
 {% load static %}
-{% block title %}Dashboard{% endblock title %}
-{% block heading %}Dashboard{% endblock heading %}
+{% block title %}Property{% endblock title %}
+{% block heading %}Property{% endblock heading %}
 {% block content %}
-Welcome to RentooPMS
+
+<div class="ml-2 mb-3">
+    <a href="{% url 'client:index' %}">
+        <button type="button" class="btn btn-primary font-weight-bold">
+            <i class="ti ti-arrow-left"></i>
+            Go Back
+        </button>
+    </a>
+
+
+    <a href="{%url 'client:new_property'%}">
+        <button type="button" class="btn btn-success font-weight-bold">
+            <i class="ti ti-plus"></i>
+            New Property
+        </button>
+    </a>
+</div>
+
+<div class="card shadow">
+    <div class="card-body">
+        {%if property%}
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="dataTable" style="width: 100%;">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Address</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {%for prop in property%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>
+                            <a href="{%url 'client:property_details' prop.id%}" data-id="{{prop.id}}">
+                                {{prop.name}}
+                            </a>
+                        </td>
+                        <td>{{prop.address}}</td>
+                    </tr>
+
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        {%else%}
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Oops!</h4>
+            <p>Looks like you have not added any property.</p>
+            <hr>
+            <p class="mb-0">
+                Add a new property to continue
+            </p>
+            <button type="button" class="btn btn-success font-weight-bold mt-3">
+                <i class="ti ti-plus"></i>
+                New Property
+            </button>
+        </div>
+        {%endif%}
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        let dataTable = $('#dataTable').DataTable({});
+    })
+</script>
+
 {%endblock content%}
