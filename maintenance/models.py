@@ -1,6 +1,6 @@
 from django.db import models
 
-from properties.models import House, Property
+from properties.models import House
 
 
 class MaintenanceRequest(models.Model):
