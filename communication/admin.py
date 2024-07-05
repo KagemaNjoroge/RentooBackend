@@ -5,9 +5,18 @@ from .models import Message, Notification
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ("sender", "recipient", "subject", "sent_at", "read")
+    list_display = (
+        "sender",
+        "recipient",
+        "subject",
+        "sent_at",
+        "read",
+    )
     list_filter = ("read",)
-    search_fields = ("sender__username", "recipient__username", "subject")
+    search_fields = (
+        "sender__username",
+        "recipient__username",
+    )
 
     # disable message editing
     def has_change_permission(self, request, obj=None):
