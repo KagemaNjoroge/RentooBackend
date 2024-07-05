@@ -8,7 +8,6 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = (
         "sender",
         "recipient",
-        "subject",
         "sent_at",
         "read",
     )

@@ -2,9 +2,11 @@ from django.db import models
 
 
 class Agent(models.Model):
-    user = models.OneToOneField(
-        "authentication.CustomUser", on_delete=models.CASCADE, related_name="agent"
-    )
+    name = models.CharField(max_length=255, blank=True, null=True)
+    photo = models.ImageField(upload_to="agents/", blank=True, null=True)
+    phone_number = models.CharField(max_length=255, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -14,4 +16,4 @@ class Agent(models.Model):
     class Meta:
         verbose_name = "Agent"
         verbose_name_plural = "Agents"
-        ordering = ["user__username"]
+        ordering = ["name"]
