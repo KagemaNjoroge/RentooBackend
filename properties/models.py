@@ -1,7 +1,5 @@
 from django.db import models
 
-from authentication.models import CustomUser
-
 
 class Amenity(models.Model):
     title = models.CharField(max_length=100, default="")
@@ -19,13 +17,6 @@ class Amenity(models.Model):
 class Property(models.Model):
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
-    agent = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name="properties",
-        null=True,
-        blank=True,
-    )
     photos = models.ManyToManyField(
         "EntityPhoto", related_name="properties", blank=True
     )
