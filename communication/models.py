@@ -11,7 +11,6 @@ class Message(models.Model):
     recipient = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="received_messages"
     )
-    subject = models.CharField(max_length=255, null=True, blank=True)
     body = models.TextField()
     sent_at = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)
@@ -20,8 +19,7 @@ class Message(models.Model):
         message_ref = db.collection("messages").document()
         message_data = {
             "sender": self.sender.username,
-            "recipient": self.recipient.username,
-            "subject": self.subject,
+            "recipient": self.recipient.username,          
             "body": self.body,
             "sent_at": datetime.datetime.now().isoformat(),
             "read": self.read,
