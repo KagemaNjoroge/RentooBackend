@@ -1,14 +1,19 @@
 from django.contrib import admin
-
 from .models import Agent
 
 
 @admin.register(Agent)
 class AgentAdmin(admin.ModelAdmin):
-    list_display = ("user",)
+    list_display = (
+        "name",
+        "phone_number",
+        "email",
+        "website",
+        "created_at",
+        "updated_at",
+    )
     search_fields = (
-        "user__username",
-        "user__first_name",
-        "user__last_name",
-        "user__email",
+        "name",
+        "phone_number",
+        "email",
     )
