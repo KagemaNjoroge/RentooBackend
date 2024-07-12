@@ -1,19 +1,6 @@
 from django.db import models
 
 
-class Amenity(models.Model):
-    title = models.CharField(max_length=100, default="")
-    description = models.CharField(max_length=300, default="")
-    number = models.IntegerField(default=1)
-
-    def __str__(self) -> str:
-        return self.title
-
-    class Meta:
-        verbose_name = "Amenity"
-        verbose_name_plural = "Amenities"
-
-
 class Property(models.Model):
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
@@ -44,13 +31,13 @@ class House(models.Model):
     purpose = models.CharField(
         choices=purposes, default="RESIDENTIAL", blank=True, null=True, max_length=30
     )
-    amenities = models.ManyToManyField("Amenity", related_name="amenities", blank=True)
+
     photos = models.ManyToManyField("EntityPhoto", related_name="houses", blank=True)
     house_number = models.CharField(max_length=50)
-    number_of_rooms = models.IntegerField()
+    number_of_rooms = models.IntegerField(default=1)
     number_of_bedrooms = models.IntegerField(default=0)
     is_occupied = models.BooleanField(default=False)
-    rent = models.DecimalField(max_digits=10, decimal_places=2)
+    rent = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField(
