@@ -34,7 +34,6 @@ def login(request):
 
         if user:
             token, created = Token.objects.get_or_create(user=user)
-            # get a profile pic if it exists
             profile_pic = None
             if user.profile_picture:
                 profile_pic = user.profile_pic.url
@@ -42,7 +41,6 @@ def login(request):
             return Response(
                 {
                     "token": token.key,
-                    # user metadata
                     "username": user.username,
                     "email": user.email,
                     "first_name": user.first_name,
@@ -54,7 +52,6 @@ def login(request):
                     "phone_number": user.phone_number,
                     "profile_picture": profile_pic,
                     "kra_pin": user.kra_pin,
-                    "role": user.role,
                 }
             )
         else:
