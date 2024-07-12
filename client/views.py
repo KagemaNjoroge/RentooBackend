@@ -9,12 +9,6 @@ def login(request):
     return render(request, "auth/login.html")
 
 
-def tenants(request):
-    return render(request, "tenants/index.html")
-
-
-def agents(request):
-    return render(request, "agents/index.html")
 
 
 def leases(request):
