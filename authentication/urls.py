@@ -12,5 +12,5 @@ router.register(r"users", UserViewSet, basename="users")
 
 urlpatterns = router.urls
 urlpatterns += [
-    path("login/", login, name="login"),
+    path("auth/login/", login, name="login"),
 ]
