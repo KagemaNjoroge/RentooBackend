@@ -5,11 +5,7 @@ from properties.models import House
 
 class MaintenanceRequest(models.Model):
     house = models.ForeignKey(to=House, on_delete=models.CASCADE, null=True, blank=True)
-
     description = models.TextField()
-    requested_by = models.ForeignKey(
-        "authentication.CustomUser", on_delete=models.CASCADE
-    )
     request_date = models.DateTimeField(auto_now_add=True)
     is_completed = models.BooleanField(default=False)
     completed_date = models.DateTimeField(null=True, blank=True)
