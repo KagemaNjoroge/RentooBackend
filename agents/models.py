@@ -1,4 +1,6 @@
+from os import name
 from django.db import models
+from properties.models import Property
 
 
 class Agent(models.Model):
@@ -9,9 +11,10 @@ class Agent(models.Model):
     website = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    properties = models.ManyToManyField(Property)
 
     def __str__(self):
-        return self.user.username
+        return self.name
 
     class Meta:
         verbose_name = "Agent"
