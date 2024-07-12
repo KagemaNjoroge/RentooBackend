@@ -3,6 +3,8 @@ from django.urls import path
 from .views import *
 from .property import *
 from .houses import *
+from .agents import *
+from .tenants import *
 
 app_name = "client"
 
@@ -18,6 +20,8 @@ urlpatterns = [
     path("houses/<int:id>/", house_details, name="house_details"),
     path("houses/", houses, name="houses"),
     path("tenants/", tenants, name="tenants"),
+    path("tenants/add/", new_tenant, name="new_tenant"),
+    path("agents/add/", new_agent, name="new_agent"),
     path("agents/", agents, name="agents"),
     path("leases/", leases, name="leases"),
     path("reports/", reports, name="reports"),
