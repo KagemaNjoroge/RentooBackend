@@ -8,13 +8,15 @@ class MaintenanceAdmin(admin.ModelAdmin):
     list_display = (
         "house",
         "description",
-        "requested_by",
         "request_date",
         "is_completed",
         "completed_date",
     )
     list_filter = ("is_completed",)
-    search_fields = ("house", "description", "requested_by")
+    search_fields = (
+        "house",
+        "description",
+    )
 
     def has_change_permission(self, request, obj=None):
         return False
