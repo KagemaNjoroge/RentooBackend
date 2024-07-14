@@ -1,7 +1,60 @@
 {% extends "main/base.html" %}
 {% load static %}
-{% block title %}Dashboard{% endblock title %}
-{% block heading %}Dashboard{% endblock heading %}
+{% block title %}Tenants{% endblock title %}
+{% block heading %}Tenants{% endblock heading %}
 {% block content %}
-Welcome to RentooPMS
+<div class="button-group ml-2 mb-3">
+    <a class="btn btn-success" href="{%url 'client:new_tenant'%}">
+        <i class="ti ti-plus">
+
+        </i>
+        New Tenant
+    </a>
+</div>
+<div class="card ml-2">
+    <div class="card-body">
+        {%if tenants%}
+        <table class="table table-bordered table-hover" id="dataTable" style="width: 100%;">
+            <thead>
+                <tr>
+
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {%for tenant in tenants%}
+                <tr>
+                    <td>
+                        {{tenant.id}}
+                    </td>
+                    <td>
+                        {{tenant.first_name}}
+                    </td>
+                    <td>
+                        {{tenant.last_name}}
+                    </td>
+                    <td>
+                        {{tenant.phone_number}}
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+        {%else%}
+        <div class="alert alert-info">
+            No Tenants found.
+            <a class="btn btn-success">
+                <i class="ti ti-plus"></i>
+                Add new tenant
+            </a>
+        </div>
+        {%endif%}
+
+    </div>
+</div>
 {%endblock content%}
