@@ -1,7 +1,12 @@
 from rest_framework import viewsets
 
-from .models import Lease, Payment
-from .serializers import LeaseSerializer, PaymentSerializer
+from .models import Lease, Tenant
+from .serializers import LeaseSerializer, TenantSerializer
+
+
+class TenantViewSet(viewsets.ModelViewSet):
+    queryset = Tenant.objects.all()
+    serializer_class = TenantSerializer
 
 
 class LeaseViewSet(viewsets.ModelViewSet):
@@ -9,6 +14,3 @@ class LeaseViewSet(viewsets.ModelViewSet):
     serializer_class = LeaseSerializer
 
 
-class PaymentViewSet(viewsets.ModelViewSet):
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
