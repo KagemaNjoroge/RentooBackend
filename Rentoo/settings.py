@@ -24,13 +24,15 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     # local apps
-    "tenants",
+    "tenants.apps.TenantsConfig",
     "authentication.apps.AuthenticationConfig",
     "agents.apps.AgentsConfig",
     "properties.apps.PropertiesConfig",
     "communication.apps.CommunicationConfig",
     "maintenance.apps.MaintenanceConfig",
     "landlords.apps.LandlordsConfig",
+    "payments.apps.PaymentsConfig",
+    "company.apps.CompanyConfig",
 ]
 CORS_ALLOW_HEADERS = [
     "content-type",
@@ -123,10 +125,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # rest_framework settings
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",  # Add this line
+        "rest_framework.authentication.TokenAuthentication",
     ],
 }
-
+# JWT
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
