@@ -1,10 +1,10 @@
 from rest_framework.routers import DefaultRouter
 
-from .views import LeaseViewSet, PaymentViewSet
+from .views import LeaseViewSet, TenantViewSet
 
 router = DefaultRouter()
-
+router.register("tenants", TenantViewSet, basename="tenants")
 router.register(r"leases", LeaseViewSet, basename="leases")
-router.register(r"payments", PaymentViewSet, basename="payments")
+
 
 urlpatterns = router.urls
