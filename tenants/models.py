@@ -4,13 +4,18 @@ from properties.models import House
 
 
 class Tenant(models.Model):
-    user = models.OneToOneField(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name="tenant",
-        null=True,
-        blank=True,
-    )
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    photo = models.ImageField(upload_to="tenants/", blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
+    houses = models.ManyToManyField(House, verbose_name="houses", blank=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
     class Meta:
         verbose_name = "Tenant"
@@ -28,6 +33,7 @@ class Lease(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    renew_monthly = models.BooleanField(default=True)
 
     def __str__(self):
         return f"Lease: {self.tenant} - {self.house}"
@@ -36,15 +42,3 @@ class Lease(models.Model):
         ordering = ["-created_at"]
         verbose_name = "Lease"
         verbose_name_plural = "Leases"
-
-
-class Payment(models.Model):
-    lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name="payments")
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_date = models.DateField()
-    payment_method = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"Payment: {self.lease} - {self.amount}"
