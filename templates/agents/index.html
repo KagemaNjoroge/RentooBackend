@@ -3,5 +3,47 @@
 {% block title %}Dashboard{% endblock title %}
 {% block heading %}Dashboard{% endblock heading %}
 {% block content %}
-Welcome to RentooPMS
+<div class="button-group ml-2">
+    <a class="btn btn-primary">
+        <i class="ti ti-arrow-left"></i>
+        Back
+    </a>
+    <a class="btn btn-success" href="{%url 'client:new_agent'%}">
+        <i class="ti ti-plus"></i>
+        New Agent
+    </a>
+</div>
+<div class="card ml-2 mt-3">
+    <div class="card-body">
+        <div class=" table-responsive">
+            <table class="table table-bordered table-hover" id="dataTable" style="width: 100%;">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for agent in agents%}
+                    <tr>
+                        <td>
+                            {{agent.id}}
+                        </td>
+                        <td>
+                            {{agent.name}}
+                        </td>
+                        <td>
+                            {{agent.phone_number}}
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 {%endblock content%}
