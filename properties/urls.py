@@ -7,7 +7,7 @@ app_name = "properties"
 router = DefaultRouter()
 router.register("units", UnitViewSet, basename="units")
 router.register("houses", HouseViewSet, basename="houses")
-router.register("", PropertyViewSet, basename="properties")
+router.register("properties", PropertyViewSet, basename="properties")
 router.register("photos", EntityPhotoViewSet, basename="photos")
 
 
