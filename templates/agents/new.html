@@ -1,0 +1,86 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock title %}
+{% block heading %}Dashboard{% endblock heading %}
+{% block content %}
+<div class="button-group ml-2">
+    <a class="btn btn-primary">
+        <i class="ti ti-arrow-left"></i>
+        Back
+    </a>
+</div>
+<div class="card ml-2 mt-3">
+    <div class="card-body">
+        <form action="/api/agents/" method="post" id="agent_form">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="phone_number">Phone</label>
+                    <input type="tel" name="phone_number" id="phone_number" class="form-control">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="website">Website</label>
+                    <input type="url" name="website" id="website" class="form-control">
+                </div>
+            </div>
+
+            <h3 class="font-weight-bold underline mt-3">
+                Property
+            </h3>
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Property
+                            </th>
+                            <th>
+                                Location
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for property in properties%}
+                        <tr data-id="{{property.id}}">
+                            <td>
+                                {{property.name}}
+                            </td>
+                            <td>
+                                {{property.address}}
+                            </td>
+                            <td>
+                                <input type="checkbox" name="{{property.id}}" class="property">
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-success" type="submit" id="submit">
+                Save
+            </button>
+        </form>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#agent_form').submit(function (e) {
+            e.preventDefault();
+            // get all property class
+
+
+        })
+    })
+</script>
+{%endblock content%}
