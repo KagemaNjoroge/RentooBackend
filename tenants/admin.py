@@ -1,16 +1,18 @@
 from django.contrib import admin
-from .models import Tenant, Lease, Payment
+from .models import Tenant, Lease
 
 
 @admin.register(Tenant)
 class TenantAdmin(admin.ModelAdmin):
-    list_display = ("user",)
-    search_fields = (
-        "user__username",
-        "user__first_name",
-        "user__last_name",
-        "user__email",
+    list_display = (
+        "first_name",
+        "last_name",
+        "phone_number",
+        "created_at",
+        "updated_at",
     )
+    search_fields = ("first_name", "last_name", "phone_number")
+    list_filter = ("created_at", "updated_at")
 
 
 @admin.register(Lease)
@@ -32,20 +34,3 @@ class LeaseAdmin(admin.ModelAdmin):
     )
     list_filter = ("is_active", "created_at", "updated_at")
 
-
-@admin.register(Payment)
-class PaymentAdmin(admin.ModelAdmin):
-    list_display = (
-        "lease",
-        "amount",
-        "payment_date",
-        "payment_method",
-        "created_at",
-        "updated_at",
-    )
-    search_fields = (
-        "lease__tenant__user__username",
-        "lease__tenant__user__first_name",
-        "lease__tenant__user__last_name",
-    )
-    list_filter = ("payment_date", "created_at", "updated_at")
