@@ -19,7 +19,7 @@ class Message(models.Model):
         message_ref = db.collection("messages").document()
         message_data = {
             "sender": self.sender.username,
-            "recipient": self.recipient.username,          
+            "recipient": self.recipient.username,
             "body": self.body,
             "sent_at": datetime.datetime.now().isoformat(),
             "read": self.read,
@@ -27,7 +27,7 @@ class Message(models.Model):
         message_ref.set(message_data)
 
     def save(self, *args, **kwargs):
-        self.save_to_firestore()
+        # self.save_to_firestore()
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -39,6 +39,7 @@ class Notification(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)
+    title = models.CharField(max_length=100, default="Notification")
 
     def save_to_firestore(self):
         notification_ref = db.collection("notifications").document()
@@ -47,11 +48,12 @@ class Notification(models.Model):
             "message": self.message,
             "created_at": datetime.datetime.now().isoformat(),
             "read": self.read,
+            "title": self.title,
         }
         notification_ref.set(notification_data)
 
     def save(self, *args, **kwargs):
-        self.save_to_firestore()
+        # self.save_to_firestore()
         super().save(*args, **kwargs)
 
     def __str__(self):
