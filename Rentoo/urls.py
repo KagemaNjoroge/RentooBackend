@@ -26,19 +26,40 @@ urlpatterns = [
     # admin
     path("admin/", admin.site.urls),
     # authentication
-    path("api/auth/", include("authentication.urls")),
+    path(
+        "",
+        include("authentication.urls"),
+    ),
     # properties
-    path("api/properties/", include("properties.urls")),
+    path(
+        "",
+        include("properties.urls"),
+    ),
     # tenants
-    path("api/tenants/", include("tenants.urls")),
+    path(
+        "",
+        include("tenants.urls"),
+    ),
     # landlords
-    path("api/landlords/", include("landlords.urls")),
+    path(
+        "",
+        include("landlords.urls"),
+    ),
     # agents
-    path("api/agents/", include("agents.urls")),
+    path(
+        "",
+        include("agents.urls"),
+    ),
     # communication
-    path("api/communication/", include("communication.urls")),
+    path(
+        "",
+        include("communication.urls"),
+    ),
     # maintenance
-    path("api/maintenance/", include("maintenance.urls")),
+    path(
+        "",
+        include("maintenance.urls"),
+    ),
     # swagger docs
     path(
         "swagger/",
@@ -46,9 +67,32 @@ urlpatterns = [
         name="schema-swagger-ui",
     ),
     # jwt token
-    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path(
+        "api/token/",
+        TokenObtainPairView.as_view(),
+        name="token_obtain_pair",
+    ),
+    path(
+        "api/token/refresh/",
+        TokenRefreshView.as_view(),
+        name="token_refresh",
+    ),
     # client
-    path("", include("client.urls")),
+    path(
+        "client/",
+        include("client.urls"),
+    ),
+    # payments
+    path(
+        "",
+        include("payments.urls"),
+        name="payments",
+    ),
+    # company
+    path(
+        "",
+        include("company.urls"),
+        name="company",
+    ),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
