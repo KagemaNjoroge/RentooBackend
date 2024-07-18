@@ -1,0 +1,20 @@
+GET http://localhost:8000/client/
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.1.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2024-07-18T154501.200.html
+
+###
+
+GET http://localhost:8000/client/
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.1.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2024-07-18T154434.200.html
+
+###
+
