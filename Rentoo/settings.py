@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "landlords.apps.LandlordsConfig",
     "payments.apps.PaymentsConfig",
     "company.apps.CompanyConfig",
+    "client.apps.ClientConfig"
 ]
 CORS_ALLOW_HEADERS = [
     "content-type",
