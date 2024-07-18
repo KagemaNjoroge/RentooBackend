@@ -2,6 +2,14 @@ from django.db import models
 
 
 class Property(models.Model):
+    purposes = (
+        ("RESIDENTIAL", "Residential"),
+        ("COMMERCIAL", "Commercial"),
+        ("OTHER", "Other"),
+    )
+    purpose = models.CharField(
+        choices=purposes, default="RESIDENTIAL", blank=True, null=True, max_length=30
+    )
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     photos = models.ManyToManyField(
