@@ -1,12 +1,15 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
+import os
+from dotenv import load_dotenv
 
-# Path to your Firebase service account credentials JSON file
-FIREBASE_SERVICE_ACCOUNT_KEY = "C:\\Users\\YOBO\\Desktop\\rentoo\\RentooBackend\\google-services.json"
+load_dotenv()
 
-# Initialize Firebase Admin SDK
-cred = credentials.Certificate(FIREBASE_SERVICE_ACCOUNT_KEY)
+FIREBASE_CONFIG_PATH = os.getenv("FIREBASE_CONFIG_PATH")
+
+
+cred = credentials.Certificate(FIREBASE_CONFIG_PATH)
 firebase_admin.initialize_app(cred)
 
-# Get a Firestore client
+
 db = firestore.client()
