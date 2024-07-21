@@ -14,7 +14,7 @@ class Tenant(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     photo = models.ImageField(upload_to="tenants/", blank=True, null=True)
     website = models.URLField(blank=True, null=True)
-    houses = models.ManyToManyField(House, verbose_name="houses", blank=True)
+    houses = models.ManyToManyField(House, verbose_name="houses", blank=True, null=True)
     tenant_type = models.CharField(
         choices=tenant_types, max_length=255, default="Individual"
     )
