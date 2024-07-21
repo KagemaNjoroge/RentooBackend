@@ -4,6 +4,8 @@ from properties.models import House
 
 
 class Tenant(models.Model):
+
+    tenant_types = (("Business", "Business"), ("Individual", "Individual"))
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
@@ -13,6 +15,12 @@ class Tenant(models.Model):
     photo = models.ImageField(upload_to="tenants/", blank=True, null=True)
     website = models.URLField(blank=True, null=True)
     houses = models.ManyToManyField(House, verbose_name="houses", blank=True)
+    tenant_type = models.CharField(
+        choices=tenant_types, max_length=255, default="Individual"
+    )
+    # TODO add employment details if tenant is an individual
+    # TODO add business details if tenant is a business
+    # TODO add kin details
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
