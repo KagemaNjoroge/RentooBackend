@@ -8,6 +8,10 @@ class Company(models.Model):
     website = models.URLField(blank=True)
     logo = models.ImageField(blank=True, null=True)
 
+    # extra settings -> language, currency
+    language = models.CharField(max_length=100, default="en")
+    currency = models.CharField(max_length=100, default="KES")
+
     def __str__(self) -> str:
         return self.name
 
