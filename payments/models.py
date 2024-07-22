@@ -2,6 +2,19 @@ from django.db import models
 from tenants.models import Lease
 
 
+class PaymentMethod(models.Model):
+    name = models.CharField(max_length=30)
+    logo = models.ImageField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "Payment Method"
+        verbose_name_plural = "Payment Methods"
+
+
 class Payment(models.Model):
     lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name="payments")
     amount = models.DecimalField(max_digits=10, decimal_places=2)
