@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Payment
+from .models import Payment, PaymentMethod
 
 
 @admin.register(Payment)
@@ -18,3 +18,9 @@ class PaymentAdmin(admin.ModelAdmin):
         "lease__tenant__user__last_name",
     )
     list_filter = ("payment_date", "created_at", "updated_at")
+
+
+@admin.register(PaymentMethod)
+class PaymentMethodAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    search_fields = ("name", "description")
