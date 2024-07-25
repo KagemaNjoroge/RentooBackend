@@ -1,6 +1,17 @@
 from django.contrib import admin
+from .models import MaintenanceRequest, Maintainer, Maintenance
 
-from .models import MaintenanceRequest
+
+@admin.register(Maintainer)
+class MaintainerAdmin(admin.ModelAdmin):
+    list_display = ("name", "maintainer_type")
+    search_fields = ("name", "description")
+
+
+@admin.register(Maintenance)
+class MaintenanceAdmin(admin.ModelAdmin):
+    list_display = ("request", "maintainer", "is_done")
+    list_filter = ("is_done",)
 
 
 @admin.register(MaintenanceRequest)
