@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "company.apps.CompanyConfig",
     "client.apps.ClientConfig",
     "vacate.apps.VacateConfig",
+    "utils.apps.UtilsConfig",
 ]
 CORS_ALLOW_HEADERS = [
     "content-type",
