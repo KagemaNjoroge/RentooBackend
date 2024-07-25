@@ -4,6 +4,8 @@ from .serializers import (
     PaymentSerializer,
     PaymentMethodSerializer,
     PaymentMethod,
+    MpesaPaymentSettingsSerializer,
+    MpesaPaymentSettings,
 )
 
 
@@ -15,3 +17,8 @@ class PaymentViewSet(viewsets.ModelViewSet):
 class PaymentMethodViewSet(viewsets.ModelViewSet):
     queryset = PaymentMethod.objects.all()
     serializer_class = PaymentMethodSerializer
+
+
+class MpesaPaymentSettingsViewSet(viewsets.ModelViewSet):
+    queryset = MpesaPaymentSettings.objects.all()
+    serializer_class = MpesaPaymentSettingsSerializer
