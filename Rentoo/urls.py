@@ -94,5 +94,10 @@ urlpatterns = [
         include("company.urls"),
         name="company",
     ),
+    # utils => temporary files
+    path(
+        "",
+        include("utils.urls"),
+    ),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
