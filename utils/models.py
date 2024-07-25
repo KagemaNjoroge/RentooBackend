@@ -7,7 +7,7 @@ class TemporaryFile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.image.url
+        return self.file.url
 
     class Meta:
         ordering = ["-created_at"]
