@@ -30,3 +30,18 @@ class Payment(models.Model):
         ordering = ["-payment_date"]
         verbose_name = "Payment"
         verbose_name_plural = "Payments"
+
+
+class MpesaPaymentSettings(models.Model):
+    consumer_key = models.CharField(max_length=100)
+    consumer_secret = models.CharField(max_length=100)
+    pass_key = models.CharField(max_length=100)
+    short_code = models.CharField(max_length=100)
+    test_mode = models.BooleanField(default=True)
+
+    def __str__(self):
+        return "Mpesa Payment Settings"
+
+    class Meta:
+        verbose_name = "Mpesa Payment Settings"
+        verbose_name_plural = "Mpesa Payment Settings"
