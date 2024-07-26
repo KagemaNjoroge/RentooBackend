@@ -15,9 +15,9 @@ class PaymentMethodSerializer(serializers.ModelSerializer):
 
 
 class MpesaPaymentSettingsSerializer(serializers.ModelSerializer):
-    consumer_key = serializers.CharField(write_only=True)
-    consumer_secret = serializers.CharField(write_only=True)
-    pass_key = serializers.CharField(write_only=True)
+    # consumer_key = serializers.CharField(write_only=True)
+    # consumer_secret = serializers.CharField(write_only=True)
+    # pass_key = serializers.CharField(write_only=True)
 
     class Meta:
         model = MpesaPaymentSettings
