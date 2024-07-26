@@ -67,7 +67,7 @@ class EntityPhoto(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.caption
+        return self.image.url
 
     class Meta:
         verbose_name = "House Photo"
@@ -79,6 +79,7 @@ class Unit(models.Model):
     unit_name = models.CharField(max_length=50)
     floor = models.CharField(max_length=30)
     houses = models.ManyToManyField(to=House)
+    photos = models.ManyToManyField("EntityPhoto", related_name="units", blank=True)
 
     def __str__(self) -> str:
         return self.unit_name
