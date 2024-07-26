@@ -1,5 +1,20 @@
 from django.contrib import admin
-from .models import Payment, PaymentMethod
+from .models import Payment, PaymentMethod, MpesaPaymentSettings
+
+
+@admin.register(MpesaPaymentSettings)
+class MpesaPaymentSettingsAdmin(admin.ModelAdmin):
+    list_display = (
+        "consumer_key",
+        "consumer_secret",
+        "pass_key",
+        "short_code",
+        "test_mode",
+    )
+
+    @admin.action(description="Toggle Test Mode")
+    def toggleTestMode(self, request, queryset):
+        pass
 
 
 @admin.register(Payment)
