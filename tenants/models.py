@@ -35,8 +35,8 @@ class Lease(models.Model):
         CustomUser, on_delete=models.CASCADE, related_name="leases"
     )
     house = models.ForeignKey(House, on_delete=models.CASCADE, related_name="leases")
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     deposit_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
