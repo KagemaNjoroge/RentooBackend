@@ -1,9 +1,19 @@
 from django.db import models
 
+import maintenance
 from properties.models import House
 
 
 class MaintenanceRequest(models.Model):
+    maintenance_status = (
+        ("Complete", "Complete"),
+        ("Scheduled", "Scheduled"),
+        ("Complete", "Complete"),
+        ("Pending", "Pending"),
+    )
+    status = models.CharField(
+        max_length=30, choices=maintenance_status, default="Pending"
+    )
     house = models.ForeignKey(to=House, on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField()
     request_date = models.DateTimeField(auto_now_add=True)
