@@ -1,5 +1,4 @@
 from django.db import models
-from authentication.models import CustomUser
 from properties.models import House
 
 
@@ -31,9 +30,7 @@ class Tenant(models.Model):
 
 
 class Lease(models.Model):
-    tenant = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, related_name="leases"
-    )
+    tenant = models.ForeignKey(Tenant, on_delete=models.CASCADE, related_name="leases")
     house = models.ForeignKey(House, on_delete=models.CASCADE, related_name="leases")
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
@@ -42,6 +39,7 @@ class Lease(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     renew_monthly = models.BooleanField(default=True)
+    is_paid_completely = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Lease: {self.tenant} - {self.house}"
