@@ -5,10 +5,10 @@ from properties.models import House
 
 class MaintenanceRequest(models.Model):
     maintenance_status = (
-        ("Complete", "Complete"),
+        ("In Progress", "In Progress"),
         ("Scheduled", "Scheduled"),
-        ("Complete", "Complete"),
         ("Pending", "Pending"),
+        ("Complete", "Complete"),
     )
     status = models.CharField(
         max_length=30, choices=maintenance_status, default="Pending"
@@ -17,10 +17,9 @@ class MaintenanceRequest(models.Model):
     description = models.TextField()
     request_date = models.DateTimeField(auto_now_add=True)
     is_completed = models.BooleanField(default=False)
-    completed_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f"Maintenance Request for {self.property}"
+        return f"Maintenance Request for {self.house}"
 
     class Meta:
         ordering = ["-request_date"]
