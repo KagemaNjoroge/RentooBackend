@@ -21,7 +21,6 @@ class MaintenanceAdmin(admin.ModelAdmin):
         "description",
         "request_date",
         "is_completed",
-        "completed_date",
     )
     list_filter = ("is_completed",)
     search_fields = (
@@ -29,8 +28,8 @@ class MaintenanceAdmin(admin.ModelAdmin):
         "description",
     )
 
-    def has_change_permission(self, request, obj=None):
-        return False
+    # def has_change_permission(self, request, obj=None):
+    #     return False
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    # def has_delete_permission(self, request, obj=None):
+    #     return False
