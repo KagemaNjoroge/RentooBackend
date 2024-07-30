@@ -20,13 +20,14 @@ class Payment(models.Model):
         ("In progress", "In progress"),
         ("Complete", "Complete"),
         ("Cancelled", "Cancelled"),
+        ("Pending", "Pending"),
     )
     payment_status = models.CharField(
         choices=status, default="In progress", max_length=30
     )
     lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name="payments")
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_date = models.DateField()
+    payment_date = models.DateTimeField()
     payment_method = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
