@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from properties.serializers import HouseSerializer
 from .models import Lease, Tenant
 
 
