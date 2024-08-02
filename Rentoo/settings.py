@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "vacate.apps.VacateConfig",
     "utils.apps.UtilsConfig",
     "stats.apps.StatsConfig",
+    "expenses.apps.ExpensesConfig",
 ]
 CORS_ALLOW_HEADERS = [
     "content-type",
