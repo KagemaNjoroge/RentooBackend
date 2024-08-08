@@ -9,7 +9,6 @@ class EntityPhotoSerializer(serializers.ModelSerializer):
 
 
 class UnitSerializer(serializers.ModelSerializer):
-    photos = EntityPhotoSerializer(many=True, read_only=True)
 
     class Meta:
         model = Unit
@@ -17,7 +16,6 @@ class UnitSerializer(serializers.ModelSerializer):
 
 
 class PropertySerializer(serializers.ModelSerializer):
-    photos = EntityPhotoSerializer(many=True, read_only=True)
 
     class Meta:
         model = Property
@@ -25,7 +23,6 @@ class PropertySerializer(serializers.ModelSerializer):
 
 
 class HouseSerializer(serializers.ModelSerializer):
-    photos = EntityPhotoSerializer(many=True, read_only=True)
 
     class Meta:
         model = House

@@ -52,7 +52,8 @@ class Maintenance(models.Model):
     cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     date_done = models.DateTimeField(auto_now_add=True)
     comments = models.TextField(blank=True, null=True)
-    is_done = models.BooleanField(default=True)
+    is_done = models.BooleanField(default=False)
+    paid = models.BooleanField(default=False)  # to track in expenses
 
     def __str__(self) -> str:
         return f"Maintenance for {self.request.id}"
@@ -61,3 +62,14 @@ class Maintenance(models.Model):
         verbose_name = "Maintenance"
         verbose_name_plural = "Maintenances"
         ordering = ["-date_done"]
+
+    def save(
+        self,
+    ) -> None:
+        # mark the maintenance request as complete if is_done
+        if self.is_done:
+            self.request.is_completed = True
+            self.request.status = "Complete"
+            self.request.save()
+
+        return super().save()

@@ -1,3 +1,4 @@
+from math import e
 from rest_framework import serializers
 from .models import CustomUser
 
@@ -5,20 +6,15 @@ from .models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = "__all__"
+        fields = ("username", "email", "password")
         extra_kwargs = {
             "password": {"write_only": True},
-            "is_active": {"read_only": True},
-            "is_supeuser": {"read_only": True},
-            "is_staff": {"read_only": True},
-            "is_superuser": {"read_only": True},
-            "last_login": {"read_only": True},
-            "date_joined": {"read_only": True},
-            "groups": {"write_only": True},
-            "user_permissions": {"write_only": True},
         }
 
-
-class LoginSerializer(serializers.Serializer):
-    password = serializers.CharField()
-    username = serializers.CharField()
+    def create(self, validated_data):
+        user = CustomUser(
+            email=validated_data["email"], username=validated_data["username"]
+        )
+        user.set_password(validated_data["password"])
+        user.save()
+        return user

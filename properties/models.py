@@ -41,7 +41,7 @@ class House(models.Model):
     )
 
     photos = models.ManyToManyField("EntityPhoto", related_name="houses", blank=True)
-    house_number = models.CharField(max_length=50)
+    house_number = models.CharField(max_length=50, unique=False)
     number_of_rooms = models.IntegerField(default=1)
     number_of_bedrooms = models.IntegerField(default=0)
     is_occupied = models.BooleanField(default=False)

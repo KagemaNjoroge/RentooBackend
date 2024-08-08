@@ -33,7 +33,7 @@ def login(request):
         )
 
         if user:
-            token, created = Token.objects.get_or_create(user=user)
+            token = Token.objects.get_or_create(user=user)[0]
             profile_pic = None
             if user.profile_picture:
                 profile_pic = user.profile_pic.url
@@ -55,7 +55,7 @@ def login(request):
                 }
             )
         else:
-            return Response({"error": "Invalid credentials"}, status=400)
+            return Response({"error": "Invalid credentials"}, status=401)
     else:
 
-        return Response(data={"error": "Invalid credentials"}, status=400)
+        return Response(data={"error": "Invalid credentials"}, status=401)
