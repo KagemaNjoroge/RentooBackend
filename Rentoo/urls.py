@@ -12,9 +12,9 @@ from Rentoo import settings
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Rentoo API",
+        title="RentooPMS API",
         default_version="v1",
-        description="API for Rentoo",
+        description="API for RentooPMS",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="nyamburanjorogejames@students.uonbi.ac.ke"),
         license=openapi.License(name="BSD License"),
