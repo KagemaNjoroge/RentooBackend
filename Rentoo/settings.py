@@ -18,11 +18,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
-    "drf_yasg",
-    "rest_framework_simplejwt",
-    "rest_framework.authtoken",
-    "corsheaders",
     # local apps
     "tenants.apps.TenantsConfig",
     "authentication.apps.AuthenticationConfig",
@@ -38,6 +33,12 @@ INSTALLED_APPS = [
     "utils.apps.UtilsConfig",
     "stats.apps.StatsConfig",
     "expenses.apps.ExpensesConfig",
+    # extras
+    "rest_framework",
+    "drf_yasg",
+    "rest_framework_simplejwt",
+    "rest_framework.authtoken",
+    "corsheaders",
 ]
 CORS_ALLOW_HEADERS = [
     "content-type",
@@ -131,11 +132,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ],
+    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 # JWT
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
     "SLIDING_TOKEN_LIFETIME": timedelta(days=30),
     "SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER": timedelta(days=1),
